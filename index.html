@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snake Mania - Classic</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="shortcut icon" href="cute-python-clipart.svg" type="image/x-icon">
+</head>
+<body>
+    <div class="game-container">
+        <nav class="navbar">
+            <div class="nav-brand">
+                <h1>🐍 Snake Game</h1>
+            </div>
+            <div class="nav-controls">
+                <div class="score-panel">
+                    <span class="score">Score: <span id="score">0</span></span>
+                    <span class="high-score">High: <span id="highScore">0</span></span>
+                </div>
+                <div class="game-controls">
+                    <button id="startBtn" class="start-btn">▶️ Start</button>
+                    <button id="pauseBtn" class="pause-btn" disabled>⏸️ Pause</button>
+                    <button id="musicToggle" class="music-btn">🔊 Music</button>
+                </div>
+                <div class="speed-controls">
+                    <label for="speedSlider">Speed:</label>
+                    <input type="range" id="speedSlider" min="50" max="300" value="150" class="speed-slider">
+                    <span id="speedValue">Normal</span>
+                </div>
+            </div>
+        </nav>
+        
+        <div class="game-area">
+            <canvas id="gameCanvas" width="600" height="600"></canvas>
+            
+            <div class="game-info">
+                <div class="instructions">
+                    <h3>🎮 How to Play</h3>
+                    <p>• Use <strong>Arrow Keys</strong> or <strong>WASD</strong> to control the snake</p>
+                    <p>• Eat the <span class="food-dot">●</span> food to grow and increase your score</p>
+                    <p>• Don't hit the walls or yourself!</p>
+                    <p>• Press <strong>SPACE</strong> to pause/resume</p>
+                </div>
+                
+                <div class="stats">
+                    <div class="stat-item">
+                        <span class="stat-label">Snake Length:</span>
+                        <span id="snakeLength" class="stat-value">1</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Current Speed:</span>
+                        <span id="currentSpeed" class="stat-value">Normal</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Touch Controls -->
+        <div class="mobile-controls">
+            <div class="control-row">
+                <button id="upBtn" class="control-btn up-btn">⬆️</button>
+            </div>
+            <div class="control-row">
+                <button id="leftBtn" class="control-btn left-btn">⬅️</button>
+                <button id="pauseBtnMobile" class="control-btn pause-btn-mobile">⏸️</button>
+                <button id="rightBtn" class="control-btn right-btn">➡️</button>
+            </div>
+            <div class="control-row">
+                <button id="downBtn" class="control-btn down-btn">⬇️</button>
+            </div>
+        </div>
+        
+        <div id="gameOver" class="game-over hidden">
+            <div class="game-over-content">
+                <h2>🎯 Game Over!</h2>
+                <div class="final-stats">
+                    <p>Final Score: <span id="finalScore">0</span></p>
+                    <p>Snake Length: <span id="finalLength">1</span></p>
+                    <p>High Score: <span id="finalHighScore">0</span></p>
+                </div>
+                <div class="game-over-buttons">
+                    <button id="restartBtn" class="restart-btn">🔄 Play Again</button>
+                    <button id="newGameBtn" class="new-game-btn">🎮 New Game</button>
+                </div>
+            </div>
+        </div>
+        
+        <div id="pauseScreen" class="pause-screen hidden">
+            <div class="pause-content">
+                <h2>⏸️ Game Paused</h2>
+                <p>Press SPACE or click Resume to continue</p>
+                <div class="pause-buttons">
+                    <button id="resumeBtn" class="resume-btn">▶️ Resume</button>
+                    <button id="restartPauseBtn" class="restart-pause-btn">🔄 Restart</button>
+                </div>
+                <!-- Music control in pause screen -->
+                <div class="pause-music-control">
+                    <button id="musicTogglePause" class="music-btn-pause">🔊 Music ON</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Audio elements -->
+    <audio id="backgroundMusic" loop>
+        <source src="music.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="moveSound">
+        <source src="move.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="foodSound">
+        <source src="food.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="gameOverSound">
+        <source src="gameover.mp3" type="audio/mpeg">
+    </audio>
+
+    <script src="js/index.js"></script>
+</body>
+</html>
